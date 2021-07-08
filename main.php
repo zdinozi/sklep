@@ -9,16 +9,17 @@
 <?php 
     if(isset($_COOKIE['logowanie']))
     {
-    echo 'Witaj '.$_COOKIE['logowanie'].' ';
+    echo 'Witaj '.strtoupper($_COOKIE['logowanie']).'!<br/>';
     }
     else{
     echo 'nie znaleziono ciasteczek';
     }
     ?>
+    <div id='logout' style='position: fixed; right:0; top:0;'>
     <form action='logout.php' method='post'>
     <input type='submit' value='LOGOUT'>
     </form>
-    
+        </div>
     <a href='markt.php'>RYNEK</a>
     
 </body>
