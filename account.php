@@ -29,14 +29,13 @@
         $wiersz=mysqli_fetch_row($wynik);
         if($_COOKIE['logowanie']==$wiersz[1])
         {
-            if($wiersz[1])
             echo "<h1>INFORMACJE</h1><br/>";
             echo "Imie: ".$wiersz[2]."<br/>";
             echo "Nazwisko: ".$wiersz[3]."<br/>";
             echo "Login: ".$wiersz[1]."<br/>";
             echo "E-mail: ".$wiersz[4]."<br/>";
-            echo "Kupione rzeczy:<br/>";
-            echo "Wystawione rzeczy:<br/>";
+            echo "Kupione rzeczy: ".$wiersz[7]."<br/>";
+            echo "Wystawione rzeczy: ".$wiersz[8]."<br/>";
             echo "Data dołączenia: ".$wiersz[6];
         }
     }
