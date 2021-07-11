@@ -8,7 +8,7 @@
 <body>
     <h1>LOGOWANIE</h1>
     <form action='' method='post'>
-    LOGIN: <input type='text' name='login'><br/>
+    LOGIN: <input type='text' name='login' pattern="([A-Za-z9-0]){2,}"><br/>
     PASSWORD: <input type='password' name='password'><br/>
     <input type='submit' value='ZALOGUJ'><br/>
     <a href='register.php'>Nie masz konta? Zarejestruj się!</a>

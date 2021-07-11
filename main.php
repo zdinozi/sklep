@@ -21,6 +21,7 @@
     </form>
         </div>
     <a href='markt.php'>RYNEK</a>
+    <a href='account.php'>Profil użytkownika</a>
     
 </body>
 </html>
