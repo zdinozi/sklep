@@ -3,13 +3,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='styl.css'>
     <title>Profil uzytkownika</title>
 </head>
 <body>
     <div id='logout' style='position: fixed; right:0; top:0;'>
     <form action='logout.php' method='post'>
-    <input type='submit' value='LOGOUT'>
-    <input type='button' value='STRONA GŁÓWNA' onclick='main()'>
+    <input type='submit' value='LOGOUT' class='btn'>
+    <input type='button' value='STRONA GŁÓWNA' onclick='main()' class='btn'>
     <script>
         function main()
         {
@@ -37,8 +38,11 @@
             echo "Kupione rzeczy: ".$wiersz[7]."<br/>";
             echo "Wystawione rzeczy: ".$wiersz[8]."<br/>";
             echo "Data dołączenia: ".$wiersz[6];
+            
+            
         }
     }
+    mysqli_close($conn);
     ?>
 </body>
 </html>

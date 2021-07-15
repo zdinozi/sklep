@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='styl.css'>
     <title>Dodaj Przedmiot</title>
 </head>
 <body>
@@ -28,6 +29,10 @@
             }
             $sql1="INSERT INTO `przedmioty` VALUES (NULL,'".$przedmiot."','".$wiersz[0]."','".$cena."',NULL)";
             $wynik2=mysqli_query($conn,$sql1) or die ('Błedne zapytanie.');
+            $sql_wystawienie='UPDATE uzytkownicy SET exhibited_items=(exhibited_items+1) where login="'.$_COOKIE["logowanie"].'"';
+            $wynik_wystawienie=mysqli_query($conn,$sql_wystawienie) or die ('Błedne zapytanie.');
+            echo 'Wystawiono przedmiot.<br/>';
+            echo '<a href="markt.php"><input type="button" value="Markt"></a>';
             mysqli_close($conn);
         }
     
