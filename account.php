@@ -32,9 +32,9 @@
         if($_COOKIE['logowanie']==$wiersz[1])
         {
             echo "<div id='account-info'><h1>INFORMATION</h1></div>";
-            echo "<div id='account-table'><tr><td>Name:</td><td>".$wiersz[2]."</td></tr>";
-            echo "<tr><td>Surname:</td><td>".$wiersz[3]."</td></tr>";
-            echo "<tr><td>Login:</td><td>".$wiersz[1]."</td></tr>";
+            echo "<div id='account-table'><tr><td>Name:</td><td>".ucfirst($wiersz[2])."</td></tr>";
+            echo "<tr><td>Surname:</td><td>".ucfirst($wiersz[3])."</td></tr>";
+            echo "<tr><td>Login:</td><td>".ucfirst($wiersz[1])."</td></tr>";
             echo "<tr><td>E-mail:</td><td>".$wiersz[4]."</td></tr>";
             echo "<tr><td>Bought items:</td><td>".$wiersz[7]."</td></tr>";
             echo "<tr><td>Issued items:</td><td>".$wiersz[8]."</td></tr>";
@@ -54,6 +54,8 @@
             $transakcje="SELECT nazwa_przedmiotu, cena, data_kupna from transakcje where id_kupca='$user_id'";
             $wynik_transakcje=mysqli_query($conn,$transakcje) or die ('Błąd');
             $ile_transakcje=mysqli_num_rows($wynik_transakcje);
+            if($ile_transakcje!=0)
+            {
             echo "<center><table><th>AI</th><th>NAME</th><th>PRICE</th><th>DATE</th>";
             for($i=0;$i<$ile_transakcje;$i++)
             {
@@ -61,6 +63,11 @@
             echo "<tr><td>".($i+1)."</td><td>".$wiersz_transakcje[0]."</td><td>".$wiersz_transakcje[1]."</td><td>".$wiersz_transakcje[2]."</td></tr>";
             }
             echo "</table></center>";
+            }
+            else{
+            echo "<center>No items have been purchased yet</center>";
+            }
+            
             
         }
     }

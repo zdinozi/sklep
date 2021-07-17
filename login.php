@@ -8,15 +8,15 @@
 </head>
 <body id="login-body">
     <div id='login-main'>
-    <h1>LOGOWANIE</h1></div>
+    <h1>SIGN IN</h1></div>
     
     <div id='login-data'>
     <form action='' method='post'>
     <center><table>
-        </center><tr><td>LOGIN:</td><td><input type='text' name='login' pattern="([A-Za-z9-0]){2,}"></td></tr>
+        </center><tr><td>USER LOGIN:</td><td><input type='text' name='login' pattern="([A-Za-z9-0]){2,}"></td></tr>
         <tr><td>PASSWORD:</td><td><input type='password' name='password'></td></tr></table></center>
-    <input type='submit' value='ZALOGUJ' class="sbm"><br/>
-    <a href='register.php'>Nie masz konta? Zarejestruj się!</a>
+    <input type='submit' value='Sign in' class="sbm"><br/>
+    <a href='register.php'>Don't have an account? Register here.</a>
     </form>
     <?php
     if (isset($_POST['login']))
@@ -39,7 +39,7 @@
             }
             else continue;
         }
-        echo 'nie udalo sie zalogowac.';
+        echo "Failed logging in.";
     }
     else{
     }

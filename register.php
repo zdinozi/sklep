@@ -9,15 +9,15 @@
 <body>
 <div id='register-register'>
 <form action='' method='post'>
-    <h1>REJESTRACJA</h1>
+    <h1>REGISTRATION</h1>
     <center><table>
-        <tr><td>NICK:</td><td><input type='text' name='nick' pattern="([A-Za-z0-9]){2,}"></td></tr>
-        <tr><td>PASSWORD:</td><td><input type='password' name='haslo' pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 5 or more characters"></td></tr>
-        <tr><td>Imię:</td><td><input type='text' name='imie' pattern="[a-zA-Ząęźżśóćńł]{3,20}$"></td></tr>
-        <tr><td>Nazwisko:</td><td><input type='text' name='nazwisko' pattern="[a-zA-Ząęźżśóćńł]{3,20}$"></td></tr>
+        <tr><td>Nick:</td><td><input type='text' name='nick' pattern="([A-Za-z0-9]){2,}"></td></tr>
+        <tr><td>Password:</td><td><input type='password' name='haslo' pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 5 or more characters"></td></tr>
+        <tr><td>Name:</td><td><input type='text' name='imie' pattern="[a-zA-Ząęźżśóćńł]{3,20}$"></td></tr>
+        <tr><td>Surname:</td><td><input type='text' name='nazwisko' pattern="[a-zA-Ząęźżśóćńł]{3,20}$"></td></tr>
         <tr><td>E-mail:</td><td><input type='email' name='mail'></td></tr>
-        <tr><td></td><td><input type=submit value="Zarejestruj" class="sbm"> <input type='reset' value="Wyczyść" class="sbm"></td></tr></table>
-<a href='login.php'>Masz już konto? Zaloguj się!</a>
+        <tr><td></td><td><input type=submit value="Register" class="sbm"> <input type='reset' value="Clear" class="sbm"></td></tr></table>
+<a href='login.php'>Already have an account? Sign in.</a>
        </form></div></center>
 <?php
     if(isset($_POST['nick']))
