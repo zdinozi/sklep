@@ -12,10 +12,10 @@
     <h1>REJESTRACJA</h1>
     <center><table>
         <tr><td>NICK:</td><td><input type='text' name='nick' pattern="([A-Za-z0-9]){2,}"></td></tr>
-<tr><td>PASSWORD:</td><td><input type='password' name='haslo'></td></tr>
-<tr><td>Imię:</td><td><input type='text' name='imie'></td></tr>
-<tr><td>Nazwisko:</td><td><input type='text' name='nazwisko'></td></tr>
-    <tr><td>E-mail:</td><td><input type='email' name='mail'></td></tr>
+        <tr><td>PASSWORD:</td><td><input type='password' name='haslo' pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 5 or more characters"></td></tr>
+        <tr><td>Imię:</td><td><input type='text' name='imie' pattern="[a-zA-Ząęźżśóćńł]{3,20}$"></td></tr>
+        <tr><td>Nazwisko:</td><td><input type='text' name='nazwisko' pattern="[a-zA-Ząęźżśóćńł]{3,20}$"></td></tr>
+        <tr><td>E-mail:</td><td><input type='email' name='mail'></td></tr>
         <tr><td></td><td><input type=submit value="Zarejestruj" class="sbm"> <input type='reset' value="Wyczyść" class="sbm"></td></tr></table>
 <a href='login.php'>Masz już konto? Zaloguj się!</a>
        </form></div></center>
@@ -26,13 +26,16 @@
             
             $conn=mysqli_connect('localhost','root','','uzytkownicy') or die('Jadymy');
             $nick=$_POST['nick'];
+            $nick=strtolower($nick);
             $haslo=$_POST['haslo'];
             $imie=$_POST['imie'];
+            $imie=strtolower($imie);
             $nazwisko=$_POST['nazwisko'];
+            $nazwisko=strtolower($nazwisko);
             $mail=$_POST['mail'];
             $sql="INSERT INTO uzytkownicy VALUES (NULL,'$nick','$imie','$nazwisko','$mail','$haslo',current_timestamp(),0,0)";
             $wynik=mysqli_query($conn, $sql) or die("Błąd");
-            echo "<center>Zarejestrowano użytkownika.</center>";
+            echo "<center>User has been registered.</center>";
 
             $sql1='SELECT id FROM uzytkownicy WHERE login="'.$nick.'"';
             $wynik1=mysqli_query($conn,$sql1);

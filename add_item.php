@@ -9,11 +9,11 @@
 <body>
     <div id='add-main'>
     <form action='' method='post'>
-        <h3>WYSTAW PRZEDMIOT NA SPRZEDAŻ</h3>
+        <h3>PUT ITEM UP FOR SALE</h3>
     <center><table>
-        <tr><td>Nazwa przedmiotu:</td><td><input type='text' name='przedmiot'></td></tr>
-    <tr><td>Cena:</td><td><input type='number' step='0.01' name='cena'></td></tr>
-        <tr><td></td><td><input type='submit' value='DODAJ' class='sbm'></td></tr>
+        <tr><td>ITEM NAME:</td><td><input type='text' name='przedmiot'></td></tr>
+    <tr><td>PRICE:</td><td><input type='number' step='0.01' name='cena'></td></tr>
+        <tr><td></td><td><input type='submit' value='ADD' class='sbm'></td></tr>
     </table></center>
     </form>
     </div>

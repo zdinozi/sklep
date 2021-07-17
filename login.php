@@ -22,6 +22,7 @@
     if (isset($_POST['login']))
     {
         $login=$_POST['login'];
+        $login=strtolower($login);
         $password=$_POST['password'];
         $conn=mysqli_connect('localhost','root','','uzytkownicy') or die ('Nie udalo sie polaczyc');        
         $sql='SELECT login, password FROM uzytkownicy';

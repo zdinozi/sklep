@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='styl.css'>
-    <title>Profil uzytkownika</title>
+    <title>USER PROFILE</title>
 </head>
 <body>
     <div id='logout' style='position: fixed; right:0; top:0;'>
     <form action='logout.php' method='post'>
+    <input type='button' value='MAIN SITE' onclick='main()' class='btn'>
     <input type='submit' value='LOGOUT' class='btn'>
-    <input type='button' value='STRONA GŁÓWNA' onclick='main()' class='btn'>
     <script>
         function main()
         {
@@ -31,17 +31,17 @@
         echo '<center><table>';
         if($_COOKIE['logowanie']==$wiersz[1])
         {
-            echo "<div id='account-info'><h1>INFORMACJE</h1></div>";
-            echo "<div id='account-table'><tr><td>Imie:</td><td>".$wiersz[2]."</td></tr>";
-            echo "<tr><td>Nazwisko:</td><td>".$wiersz[3]."</td></tr>";
+            echo "<div id='account-info'><h1>INFORMATION</h1></div>";
+            echo "<div id='account-table'><tr><td>Name:</td><td>".$wiersz[2]."</td></tr>";
+            echo "<tr><td>Surname:</td><td>".$wiersz[3]."</td></tr>";
             echo "<tr><td>Login:</td><td>".$wiersz[1]."</td></tr>";
             echo "<tr><td>E-mail:</td><td>".$wiersz[4]."</td></tr>";
-            echo "<tr><td>Kupione rzeczy:</td><td>".$wiersz[7]."</td></tr>";
-            echo "<tr><td>Wystawione rzeczy:</td><td>".$wiersz[8]."</td></tr>";
-            echo "<tr><td>Data dołączenia:</td><td>".$wiersz[6]."</td></tr>";
+            echo "<tr><td>Bought items:</td><td>".$wiersz[7]."</td></tr>";
+            echo "<tr><td>Issued items:</td><td>".$wiersz[8]."</td></tr>";
+            echo "<tr><td>User creation date:</td><td>".$wiersz[6]."</td></tr>";
             echo "</table></center></div>";
             
-            echo "<div id='account-item-text'><h2>Kupione przedmioty</h2></div>";
+            echo "<div id='account-item-text'><h2>Bought items</h2></div>";
             $id='SELECT id FROM uzytkownicy WHERE login="'.$_COOKIE['logowanie'].'"';
             $wynik_id=mysqli_query($conn,$id) or die ('Błąd.');
             $ile_id=mysqli_num_rows($wynik_id);

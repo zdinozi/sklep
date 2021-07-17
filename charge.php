@@ -10,9 +10,9 @@
 
 <div id='logout' style='position: fixed; right:0; top:0;'>
         <form action='logout.php' method='post'>
-            <input type='submit' value='LOGOUT' name='logout' class='btn'>
+            <input type='button' onclick='main()' value="MAIN SITE" name='add' class='btn'>
             <input type='button' onclick='market()' value="MARKET" name='add' class='btn'>
-            <input type='button' onclick='main()' value="STRONA GŁÓWNA" name='add' class='btn'>
+            <input type='submit' value='LOGOUT' name='logout' class='btn'>
             <script>
                 function main()
                 {
@@ -34,9 +34,9 @@
         </form>
     </div>
     <div id='charge-main'>
-        <h3>DOŁADUJ KONTO</h3>
+        <h3>CHARGE ACCOUNT</h3>
     <center><table><tr><td>
-        <form action='' method='post'><label>Kwota do doładowania: </label></td><td><input type='number' step='0.01' name='kwota'></td></tr><tr><td></td><td><input type='submit' value="Doładuj" class='sbm'></form></td></tr></table></center>
+        <form action='' method='post'><label>Amount to boost: </label></td><td><input type='number' step='0.01' name='kwota'></td></tr><tr><td></td><td><input type='submit' value="Boost" class='sbm'></form></td></tr></table></center>
     <?php
     if(isset($_POST['kwota']))
     {
@@ -46,14 +46,14 @@
             $conn=mysqli_connect('localhost','root','','uzytkownicy') or die ('Nie udalo sie polaczyc z baza danych');
             $sql='Update pieniadze SET ilosc=(ilosc+'.$kwota.')';
             $wynik=mysqli_query($conn,$sql);
-            echo 'Doładowano konto.';
+            echo 'Account topped up.';
             }
         else 
         {
-            echo 'Wprowadź poprawną kwotę.';
+            echo 'Please insert amount.';
         }}
     else{
-        echo 'Proszę wprowadzić kwotę.';
+        echo 'Please insert amount.';
             }   
     ?>
     </div>
