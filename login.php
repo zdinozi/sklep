@@ -6,12 +6,16 @@
     <link rel='stylesheet' href='styl.css'>
     <title>login</title>
 </head>
-<body>
-    <h1>LOGOWANIE</h1>
+<body id="login-body">
+    <div id='login-main'>
+    <h1>LOGOWANIE</h1></div>
+    
+    <div id='login-data'>
     <form action='' method='post'>
-    LOGIN: <input type='text' name='login' pattern="([A-Za-z9-0]){2,}"><br/>
-    PASSWORD: <input type='password' name='password'><br/>
-    <input type='submit' value='ZALOGUJ'><br/>
+    <center><table>
+        </center><tr><td>LOGIN:</td><td><input type='text' name='login' pattern="([A-Za-z9-0]){2,}"></td></tr>
+        <tr><td>PASSWORD:</td><td><input type='password' name='password'></td></tr></table></center>
+    <input type='submit' value='ZALOGUJ' class="sbm"><br/>
     <a href='register.php'>Nie masz konta? Zarejestruj się!</a>
     </form>
     <?php
@@ -40,6 +44,6 @@
     }
         ?>
         
-        
+        </div>
 </body>
 </html>

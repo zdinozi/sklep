@@ -28,17 +28,39 @@
     for($i=0; $i<$ile; $i++)
     {
         $wiersz=mysqli_fetch_row($wynik);
+        echo '<center><table>';
         if($_COOKIE['logowanie']==$wiersz[1])
         {
-            echo "<h1>INFORMACJE</h1><br/>";
-            echo "Imie: ".$wiersz[2]."<br/>";
-            echo "Nazwisko: ".$wiersz[3]."<br/>";
-            echo "Login: ".$wiersz[1]."<br/>";
-            echo "E-mail: ".$wiersz[4]."<br/>";
-            echo "Kupione rzeczy: ".$wiersz[7]."<br/>";
-            echo "Wystawione rzeczy: ".$wiersz[8]."<br/>";
-            echo "Data dołączenia: ".$wiersz[6];
+            echo "<div id='account-info'><h1>INFORMACJE</h1></div>";
+            echo "<div id='account-table'><tr><td>Imie:</td><td>".$wiersz[2]."</td></tr>";
+            echo "<tr><td>Nazwisko:</td><td>".$wiersz[3]."</td></tr>";
+            echo "<tr><td>Login:</td><td>".$wiersz[1]."</td></tr>";
+            echo "<tr><td>E-mail:</td><td>".$wiersz[4]."</td></tr>";
+            echo "<tr><td>Kupione rzeczy:</td><td>".$wiersz[7]."</td></tr>";
+            echo "<tr><td>Wystawione rzeczy:</td><td>".$wiersz[8]."</td></tr>";
+            echo "<tr><td>Data dołączenia:</td><td>".$wiersz[6]."</td></tr>";
+            echo "</table></center></div>";
             
+            echo "<div id='account-item-text'><h2>Kupione przedmioty</h2></div>";
+            $id='SELECT id FROM uzytkownicy WHERE login="'.$_COOKIE['logowanie'].'"';
+            $wynik_id=mysqli_query($conn,$id) or die ('Błąd.');
+            $ile_id=mysqli_num_rows($wynik_id);
+            for($i=0;$i<$ile_id;$i++)
+            {
+            $wiersz_id=mysqli_fetch_row($wynik_id);
+            $user_id=$wiersz_id[0];
+            }
+            
+            $transakcje="SELECT nazwa_przedmiotu, cena, data_kupna from transakcje where id_kupca='$user_id'";
+            $wynik_transakcje=mysqli_query($conn,$transakcje) or die ('Błąd');
+            $ile_transakcje=mysqli_num_rows($wynik_transakcje);
+            echo "<center><table><th>AI</th><th>NAME</th><th>PRICE</th><th>DATE</th>";
+            for($i=0;$i<$ile_transakcje;$i++)
+            {
+            $wiersz_transakcje=mysqli_fetch_row($wynik_transakcje);
+            echo "<tr><td>".($i+1)."</td><td>".$wiersz_transakcje[0]."</td><td>".$wiersz_transakcje[1]."</td><td>".$wiersz_transakcje[2]."</td></tr>";
+            }
+            echo "</table></center>";
             
         }
     }

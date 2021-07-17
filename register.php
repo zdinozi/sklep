@@ -7,16 +7,18 @@
     <title>1-Rejestracja</title>
 </head>
 <body>
+<div id='register-register'>
 <form action='' method='post'>
     <h1>REJESTRACJA</h1>
-NICK: <input type='text' name='nick' pattern="([A-Za-z0-9]){2,}" class='btn'><br/>
-PASSWORD: <input type='password' name='haslo' class='btn'><br/>
-Imię: <input type='text' name='imie' class='btn'><br/>
-Nazwisko: <input type='text' name='nazwisko' class='btn'><br/>
-E-mail: <input type='email' name='mail' class='btn'><br/>
-<input type=submit value="Zarejestruj" class='btn'><input type='reset' value="Wyczyść" class='btn'><br/>
+    <center><table>
+        <tr><td>NICK:</td><td><input type='text' name='nick' pattern="([A-Za-z0-9]){2,}"></td></tr>
+<tr><td>PASSWORD:</td><td><input type='password' name='haslo'></td></tr>
+<tr><td>Imię:</td><td><input type='text' name='imie'></td></tr>
+<tr><td>Nazwisko:</td><td><input type='text' name='nazwisko'></td></tr>
+    <tr><td>E-mail:</td><td><input type='email' name='mail'></td></tr>
+        <tr><td></td><td><input type=submit value="Zarejestruj" class="sbm"> <input type='reset' value="Wyczyść" class="sbm"></td></tr></table>
 <a href='login.php'>Masz już konto? Zaloguj się!</a>
-       </form>
+       </form></div></center>
 <?php
     if(isset($_POST['nick']))
        {
@@ -30,7 +32,7 @@ E-mail: <input type='email' name='mail' class='btn'><br/>
             $mail=$_POST['mail'];
             $sql="INSERT INTO uzytkownicy VALUES (NULL,'$nick','$imie','$nazwisko','$mail','$haslo',current_timestamp(),0,0)";
             $wynik=mysqli_query($conn, $sql) or die("Błąd");
-            echo "Zarejestrowano użytkownika.";
+            echo "<center>Zarejestrowano użytkownika.</center>";
 
             $sql1='SELECT id FROM uzytkownicy WHERE login="'.$nick.'"';
             $wynik1=mysqli_query($conn,$sql1);

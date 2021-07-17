@@ -10,7 +10,7 @@
 <?php 
     if(isset($_COOKIE['logowanie']))
     {
-    echo '<div id="powitanie"><span id="powitanie">Witaj '.strtoupper($_COOKIE['logowanie']).'!</span></div><br/>';
+    echo '<div id="powitanie"><span id="powitanie">WELCOME '.strtoupper($_COOKIE['logowanie']).'!</span></div><br/>';
     }
     else{
     echo 'nie znaleziono ciasteczek';
@@ -22,11 +22,13 @@
     </form>
         </div>
     <div id='animation'>
-    <div id='shop'>
-    <a href='markt.php'><img src='shop.png' class="main" alt='shop'></a>
-        </div>
+    <div id='shop'><a href='markt.php'>
+    <img src='shop.png' class="main" alt='shop'><br/>
+        <h2>MARKET</h2>
+       </a> </div>
     <div id='user'>
-    <a href='account.php'><img src='uzytkownik.png' class="main" alt='user'></a>
+    <a href='account.php'><img src='uzytkownik.png' class="main" alt='user'><br/>
+        <h2>USER INFO</h2></a>
     </div></div>
 </body>
 </html>

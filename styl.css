@@ -1,3 +1,7 @@
+*{
+    margin: 0;
+    font-family: 'Arial unicode ms';
+}
 #powitanie{
     font-size: 200%;
     text-align: center;
@@ -10,12 +14,24 @@
     text-align: center;
     float:left;
 }
-.main{
+#user a,#shop a{
+    text-decoration: none;
+    color:black;
+
+}
+#user h2,#shop h2{
+    transition: 2s;
+}
+#user:hover h2, #shop:hover h2{
+    font-size:200%;
+
+}
+#user img, #shop img{
     height: 35%;
     width: 35%;
     transition: 2s;
 }
-.main:hover{
+#user:hover img, #shop:hover img{
     height: 50%;
     width: 50%;
 }
@@ -31,4 +47,139 @@
 .btn:hover{
     background-color: #981816;
     color: white;
+}
+#menu-markt{
+    width: 100%;
+    height: 40px;
+}
+#menu-markt-1, #menu-markt-2,#menu-markt-3,#menu-markt-4{
+    width: 25%;
+    float:left;
+    text-align: center;
+    font-size:30px;
+    border-left: 2px solid #981816;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    transition: 1s;
+    cursor: pointer;
+    border-left: 2px solid #981816;
+    border-top: 2px solid #981816;
+    border-bottom: 2px solid #981816;
+}
+#manu-markt-4{
+    border-right: 2px solid #981816;
+}
+#menu-markt-1:hover, #menu-markt-2:hover,#menu-markt-3:hover,#menu-markt-4:hover{
+    background-color: #981816;
+    color: white;
+}
+#menu-markt-1:hover a, #menu-markt-2:hover a,#menu-markt-3:hover a,#menu-markt-4:hover a{
+    color: white;
+}
+#menu-markt a{
+    text-decoration: none;
+    color: black;
+}
+#markt-items{
+    text-align: center;
+    margin-top: 10px;
+}
+#markt-login
+{
+    font-size: 25px;
+}
+#markt-avilible{
+    font-size:20px;
+}
+#markt-table{
+    margin-top: 15px;
+}
+#markt-table table{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+#markt-table td{
+    border: 1px solid black;
+    padding: 5px 5px 5px 5px;
+}
+#markt-table th{
+    border: 1px solid black;
+}
+#markt-table tr{
+    transition: 1s;
+}
+#markt-table tr:hover{
+    background-color: #981816;
+}
+#btn_buy{
+    background-color: white;
+    color:black;
+    transition: 1s;
+}
+#btn_buy:hover{
+    background-color: black;
+    color:white;
+    cursor:pointer;
+}
+#login-main{
+    text-align: center;
+    margin-bottom: 30px;
+    width: 100%;
+}
+#login-data{
+    width: 100%;
+    text-align: center;
+}
+#login-data a{
+    text-decoration: none;
+    color: black;
+    
+}
+.sbm{
+    background-color : white;
+    color:black;
+    border: 2px solid #981816;
+    transition: 1s;
+}
+.sbm:hover{
+    background-color:#981816;
+    color:white;
+    cursor: pointer;
+    border: 2px solid black;
+}
+#account-info{
+    margin-bottom: 20px;
+    text-align: center;
+}
+#account-table{
+    margin-bottom: 20px;
+}
+#account-item-text{
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+#register-register h1{
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+#register-register a{
+    text-decoration: none;
+    color:black;
+}
+#add-main{
+    text-align: center;
+}
+#add-main h3{
+    margin-bottom: 20px;
+}
+#charge-main{
+    text-align: center;
+    width: 100%;
+}
+#charge-main h3{
+margin-top: 30px;
+margin-bottom: 20px;
 }

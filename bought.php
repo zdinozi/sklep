@@ -21,14 +21,15 @@
             $id_uzytkownika=$wiersz2[0];
         }
 
-        $sql1='SELECT cena, Nazwa FROM przedmioty where ID_przedmiotu="'.$id.'"';
+        $sql1='SELECT cena, Nazwa, ID_uzytkownika FROM przedmioty where ID_przedmiotu="'.$id.'"';
         $wynik1=mysqli_query($conn,$sql1);
-        $ile1=mysqli_num_rows($wynik);
+        $ile1=mysqli_num_rows($wynik1);
         for($i=0;$i<$ile1;$i++)
             {
             $wiersz1=mysqli_fetch_row($wynik1);
             $cena_przedmiotu=$wiersz1[0];
             $nazwa_przedmiotu=$wiersz1[1];
+            $id_user=$wiersz1[2];
         }
 
         if($ilosc>=$cena_przedmiotu)
@@ -47,13 +48,29 @@
 
         $sql5='DELETE FROM przedmioty WHERE ID_przedmiotu='.$_COOKIE["id"].'';
         $wynik5=mysqli_query($conn,$sql5) or die ('bledne zapytanie');
+          
+        $sql_user='SELECT ilosc FROM pieniadze,uzytkownicy where pieniadze.id_uzytkownika=uzytkownicy.id and Id_uzytkownika='.$id_user.'';
+        $wynik_user=mysqli_query($conn, $sql_user) or die ('Błędne zapytanie');
+        $ile_user=mysqli_num_rows($wynik_user);
+        for($i=0;$i<$ile_user;$i++)
+        {
+            $wiersz_user=mysqli_fetch_row($wynik_user);
+            $ilosc_user=$wiersz_user[0];
         }
+        $ilosc_user=($ilosc_user+$cena_przedmiotu);
+        $sql6='UPDATE pieniadze SET ilosc="'.$ilosc_user.'" where id_uzytkownika="'.$id_user.'"';
+        $wynik6=mysqli_query($conn,$sql6) or die ('bledne zapytanie');
+        }
+        
+        
         
 
         mysqli_close($conn);
         setcookie('id','','time()-3600');
-        echo $_COOKIE['id'];
-        echo $_COOKIE['logowanie'];
+        echo $_COOKIE['id']."<br/>";
+        echo $_COOKIE['logowanie']."<br/>";
+        echo $id_user."<br/>";
+        echo $ilosc_user."<br/>";
 
         $link='<script>window.open("markt.php","_self")</script>';
         echo $link;

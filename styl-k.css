@@ -1,0 +1,109 @@
+*{
+margin:0;
+}
+#powitanie{
+    font-size: 200%;
+    text-align: center;
+}
+#animation{
+    width: 100%;
+}
+#user, #shop{
+    width: 50%;
+    text-align: center;
+    float:left;
+}
+.main{
+    height: 35%;
+    width: 35%;
+    transition: 2s;
+}
+.main:hover{
+    height: 50%;
+    width: 50%;
+}
+/*.btn{
+    border: 2px solid #981816;
+    background-color: white;
+    transition: 1s;
+    color: #981816;
+    width: 145px;
+    height: 40px;
+    cursor: pointer;
+}
+.btn:hover{
+    background-color: #981816;
+    color: white;
+}*/
+.nav{
+    height: 100%;
+    width: 15%;
+    position: fixed;
+    z-index: 1;
+    top:0;
+    right: 0;
+    background-color: #111;
+    overflow-x:hidden;
+    padding-left: 0;
+    transition: 1s;
+    text-align: center;
+}
+.nav a:first-child{
+    border-top: 1px solid white;
+}
+.nav a{
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color:palevioletred;
+    display: block;
+    transition: 2s;
+    border-collapse: collapse;
+    border-bottom: 1px solid white;
+}
+.nav a:last-child{
+    border-bottom: 1px solid white;
+    border-top: 1px solid white;
+}
+.nav a:hover{
+    color:aliceblue;
+    font-size:35px;
+    background-color:darkgoldenrod;
+}
+.nav .closebtn{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+#men{
+    position: fixed;
+    width: 5%;
+    height: 100%;
+    right: 0;
+    top 0;
+    color:black;
+    background-color: white;
+    font-size:60px;
+    float:right;
+    line-height: 100%;
+    background-color: red;
+}
+#men:hover{
+    background-color: #111;
+    color:white;
+    position:static;
+    transition: 2s;
+    background-color: #111;
+    color:white;
+    cursor: pointer;
+}
+#menu{
+    height: 100%;
+    width: 10%;
+    float:right;
+}
+#text{
+    width: 95%;
+    height: 100%;
+    float:left;
+}
