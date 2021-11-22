@@ -7,57 +7,122 @@
     <title>Markt</title>
 </head>
 <body>
-<div id='menu-markt'>
-    <a href='main.php'> <div id='menu-markt-4'>MAIN PAGE</div></a>
-    <a href='charge.php'><div id='menu-markt-1'>ADD FUNDS</div></a>
-    <a href='add_item.php'><div id='menu-markt-3'>ADD ITEM</div></a>
-    <a href='logout.php'><div id='menu-markt-2'>LOGOUT</div></a>
-</div>
-    
-    
 <?php
-    if(isset($_COOKIE['logowanie']))
+    include 'config.php';
+    class Markt
     {
-        $conn=mysqli_connect('localhost','root','','uzytkownicy') or die ('Nie udalo sie polaczyc z baza danych');
-        $login=$_COOKIE['logowanie'];
-        $sql1='SELECT ilosc FROM pieniadze,uzytkownicy where pieniadze.id_uzytkownika=uzytkownicy.id and uzytkownicy.login="'.$login.'"';
-        $wynik1=mysqli_query($conn,$sql1) or die ('Błędne zapytanie');
-        $ile1=mysqli_num_rows($wynik1);
-        for($i=0;$i<$ile1;$i++)
-            {
-            $wiersz1=mysqli_fetch_row($wynik1);
-            $cena=$wiersz1[0];
-        }
-        echo '<div id="markt-items">';
-        echo '<div id="markt-login"><span>LOGGED AS <u>'.$_COOKIE['logowanie'].'</u>. ACCOUNT BALANCE: '.$cena.'zł</span></div><br/>';
-        echo "<span style='color:#981816;' id='markt-avilible'>Available items:</span>";
-        $sql='SELECT ID_przedmiotu,nazwa, login, Cena FROM przedmioty,uzytkownicy where przedmioty.ID_uzytkownika=uzytkownicy.id';
-        $wynik=mysqli_query($conn,$sql) or die ('Błędne zapytanie');
-        $ile=mysqli_num_rows($wynik);
-        echo "<div id='markt-table'><center><table><th>ID</th><th>NAME</th><th>USER</th><th>PRICE</th><th>-</th>";
-        for($i=0;$i<$ile;$i++)
+        public $login;
+        public function __construct()
         {
-            $wiersz=mysqli_fetch_row($wynik);
-            echo '<tr><td>'.($i+1).'</td><td>'.$wiersz[1].'</td><td>'.$wiersz[2].'</td><td>'.$wiersz[3].'</td><td><input type="button" value="BUY" onclick="buy(this)" id="btn_buy" name="'.$wiersz[0].'"></td>';
+            $this->login=$_SESSION['login'];
+
         }
-        echo '</table>';
-        echo "<input type='hidden' value='0' id='wynik' name='xdd'>";
-        mysqli_close($conn);
+
+        public function title()
+        {
+            global $conn;
+            $sql_kasa = 'SELECT ilosc FROM pieniadze,uzytkownicy where pieniadze.id_uzytkownika=uzytkownicy.id and uzytkownicy.login="' . $this->login . '"';
+            $kasa = $conn->query($sql_kasa) or die ('Błędne zapytanie');
+
+            while ($wiersz_kasa = $kasa->fetch_row()) {
+                $cena = $wiersz_kasa[0];
+            }
+
+            echo '<div class="title-main" style="text-align: center;">LOGGED AS <u>' . $_SESSION['login'] . '</u>. ACCOUNT BALANCE: ' . $cena . 'zł</div><div class="menu-block" onclick="menu()">&#9776;</div></div><br/>';
+        }
+
+        public function items()
+        {
+            global $conn;
+            echo "<span id='markt-avilible'>Available items:</span>";
+
+            $sql_sklep = 'SELECT ID_przedmiotu,nazwa, login, Cena FROM przedmioty,uzytkownicy where przedmioty.ID_uzytkownika=uzytkownicy.id';
+            $wynik_sklep = $conn->query($sql_sklep) or die ('Błędne zapytanie');
+
+            echo "<div id='markt-table'><table><th class='markt-th'>ID</th><th class='markt-th'>NAME</th><th class='markt-th'>USER</th><th class='markt-th'>PRICE</th><th class='markt-th'>-</th>";
+
+            $i = 0;
+
+            while ($wiersz_sklep = $wynik_sklep->fetch_row()) {
+                echo '<tr><td>' . ($i + 1) . '</td><td>' . $wiersz_sklep[1] . '</td><td>' . $wiersz_sklep[2] . '</td><td>' . $wiersz_sklep[3] . '</td><td><input type="button" value="BUY" onclick="buy(this)" id="btn_buy" name="' . $wiersz_sklep[0] . '"></td>';
+                $i++;
+            }
+
+            echo '</table>';
+            echo "<input type='hidden' value='0' id='wynik' name='xdd'>";
+            echo '</div>';
+
+            $conn->close();
+        }
+    }
+    if($_SESSION['start']==1) {
+        $m1 = new Markt;
+        $m1->title();
+        $m1->items();
     }
     else{
-        echo 'nie znaleziono ciasteczek';
+        header('Location: login.php');
     }
-    echo '</div></center></div>';
+
 ?>
 <script>
     function buy(ele){
                     console.log(ele.name);
-                    var wartosc=ele.name;
-                    var data=new Date();
-                    data+=Date.now()+3600;
-                    document.cookie='id='+wartosc+'; expires="'+data+'";path=/';
+
+                    var wartosc = ele.name;
+                    var data = new Date();
+
+                    data += Date.now() + 3600;
+                    document.cookie = 'id=' + wartosc + '; expires="' + data + '";path=/';
                     window.open("bought.php","_self");
                 }
+    function menu(){
+        if(document.getElementById('menuu').style.opacity==0)
+        {
+            document.getElementById('menuu').style.opacity=1;
+            document.getElementById('menuu').style.width='15%';
+        }
+        else{
+            document.getElementById('menuu').style.opacity=0;
+            document.getElementById('menuu').style.width=0;
+        }
+    }
+    function add_item(){
+        window.open("add_item.php","_self");
+    }
+    function add_funds(){
+        window.open("charge.php","_self");
+    }
+    function logout(){
+        window.open("logout.php","_self");
+    }
+    function main(){
+        window.open("main.php","_self");
+    }
+    function markt(){
+        window.open("markt.php","_self");
+    }
+    function usrinfo(){
+        window.open("account.php","_self");
+    }
 </script>
+
+<div id="menuu">
+    <div class="menuu" onclick="markt()">Markt</div>
+    <div class="menuu" onclick="add_item()">Add Item</div>
+    <div class="menuu" onclick="add_funds()">Add Funds</div>
+    <div class="menuu" onclick="main()">Main Site</div>
+    <div class="menuu" onclick="usrinfo()">User Info</div>
+    <div class="menuu" onclick="logout()">Logout</div>
+    <div class="menuu" onclick="menu()">X</div>
+</div>
+<footer>
+    <a href="https://github.com/zdinozi" target="_blank">
+        <img src="github-ww.png" style="width: 50px; height: 50px;">
+    </a>&nbsp;&nbsp;
+    <a href="https://www.linkedin.com/in/wiktor-banasiak-672425222/" target="_blank">
+        <img src="linkedin.png" style="width: 50px; height: 50px;">
+    </a>
+</footer>
 </body>
 </html>

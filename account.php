@@ -1,77 +1,110 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+<!--    <title>USER PROFILE</title>-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='styl.css'>
-    <title>USER PROFILE</title>
 </head>
 <body>
-    <div id='logout' style='position: fixed; right:0; top:0;'>
-    <form action='logout.php' method='post'>
-    <input type='button' value='MAIN SITE' onclick='main()' class='btn'>
-    <input type='submit' value='LOGOUT' class='btn'>
-    <script>
-        function main()
-        {
-            window.open('main.php','_self');
-        }
-    </script>
-    </form>
-        </div>
-    
+<div class="title-main" style="text-align: center;">INFORMATION</div>
+<div class="menu-block" onclick="menu()">&#9776;</div>
     <?php
-    $conn=mysqli_connect('localhost','root','','uzytkownicy') or die ('Nie udało się połączyć z bazą danych');
-    $sql="SELECT * FROM uzytkownicy";
-    $wynik=mysqli_query($conn,$sql) or die ('Błędne zapytanie.');
-    $ile=mysqli_num_rows($wynik);
-    for($i=0; $i<$ile; $i++)
+    include 'config.php';
+    if($_SESSION['login']!='')
     {
-        $wiersz=mysqli_fetch_row($wynik);
-        echo '<center><table>';
-        if($_COOKIE['logowanie']==$wiersz[1])
-        {
-            echo "<div id='account-info'><h1>INFORMATION</h1></div>";
-            echo "<div id='account-table'><tr><td>Name:</td><td>".ucfirst($wiersz[2])."</td></tr>";
-            echo "<tr><td>Surname:</td><td>".ucfirst($wiersz[3])."</td></tr>";
-            echo "<tr><td>Login:</td><td>".ucfirst($wiersz[1])."</td></tr>";
-            echo "<tr><td>E-mail:</td><td>".$wiersz[4]."</td></tr>";
-            echo "<tr><td>Bought items:</td><td>".$wiersz[7]."</td></tr>";
-            echo "<tr><td>Issued items:</td><td>".$wiersz[8]."</td></tr>";
-            echo "<tr><td>User creation date:</td><td>".$wiersz[6]."</td></tr>";
-            echo "</table></center></div>";
-            
-            echo "<div id='account-item-text'><h2>Bought items</h2></div>";
-            $id='SELECT id FROM uzytkownicy WHERE login="'.$_COOKIE['logowanie'].'"';
-            $wynik_id=mysqli_query($conn,$id) or die ('Błąd.');
-            $ile_id=mysqli_num_rows($wynik_id);
-            for($i=0;$i<$ile_id;$i++)
-            {
-            $wiersz_id=mysqli_fetch_row($wynik_id);
-            $user_id=$wiersz_id[0];
+        global $conn;
+        $sql = "SELECT * FROM uzytkownicy";
+        $wynik = $conn->query($sql) or die ('Błędne zapytanie.');
+        $ile = $wynik->num_rows;
+        while ($wiersz = $wynik->fetch_row()) {
+            echo '<table>';
+            if ($_SESSION['login'] == $wiersz[1]) {
+                echo "<div id='account-table' style='margin-top: 10px;'><table id='account-table-table'><tr><td class='fontt'>Name:</td><td>" . ucfirst($wiersz[2]) . "</td></tr>";
+                echo "<tr><td class='fontt'>Surname:</td><td>" . ucfirst($wiersz[3]) . "</td></tr>";
+                echo "<tr><td class='fontt'>Login:</td><td>" . ucfirst($wiersz[1]) . "</td></tr>";
+                echo "<tr><td class='fontt'>E-mail:</td><td>" . $wiersz[4] . "</td></tr>";
+                echo "<tr><td class='fontt'>Bought items:</td><td>" . $wiersz[7] . "</td></tr>";
+                echo "<tr><td class='fontt'>Issued items:</td><td>" . $wiersz[8] . "</td></tr>";
+                echo "<tr><td class='fontt'>User creation date:</td><td>" . $wiersz[6] . "</td></tr>";
+                echo "</table></div>";
+
+                echo "<div id='account-item-text'><h2>Bought items</h2></div>";
+                $id = 'SELECT id FROM uzytkownicy WHERE login="' . $_SESSION['login'] . '"';
+                $wynik_id = $conn->query($id) or die ('Błąd.');
+                $ile_id = $wynik_id->num_rows;
+                while ($wiersz_id = $wynik_id->fetch_row()) {
+                    $user_id = $wiersz_id[0];
+                }
+
+                $transakcje = "SELECT nazwa_przedmiotu, cena, data_kupna from transakcje where id_kupca='$user_id'";
+                $wynik_transakcje = $conn->query($transakcje) or die ('Błąd');
+                $ile_transakcje = $wynik_transakcje->num_rows;
+                $i = 0;
+                if ($ile_transakcje != 0) {
+                    echo "<div id='account-ttable'><table><th>AI</th><th>NAME</th><th>PRICE</th><th>DATE</th>";
+                    while ($wiersz_transakcje = $wynik_transakcje->fetch_row()) {
+                        echo "<tr><td class='account-t'>" . ($i + 1) . "</td><td class='account-t'>" . $wiersz_transakcje[0] . "</td><td class='account-t'>" . $wiersz_transakcje[1] . "</td><td class='account-t'>" . $wiersz_transakcje[2] . "</td></tr>";
+                        $i++;
+                    }
+                    echo "</table></div>";
+                } else {
+                    echo "<p style='text-align: center'><b>No items have been purchased yet</b></p>";
+                    $i++;
+                }
+
+
             }
-            
-            $transakcje="SELECT nazwa_przedmiotu, cena, data_kupna from transakcje where id_kupca='$user_id'";
-            $wynik_transakcje=mysqli_query($conn,$transakcje) or die ('Błąd');
-            $ile_transakcje=mysqli_num_rows($wynik_transakcje);
-            if($ile_transakcje!=0)
-            {
-            echo "<center><table><th>AI</th><th>NAME</th><th>PRICE</th><th>DATE</th>";
-            for($i=0;$i<$ile_transakcje;$i++)
-            {
-            $wiersz_transakcje=mysqli_fetch_row($wynik_transakcje);
-            echo "<tr><td>".($i+1)."</td><td>".$wiersz_transakcje[0]."</td><td>".$wiersz_transakcje[1]."</td><td>".$wiersz_transakcje[2]."</td></tr>";
-            }
-            echo "</table></center>";
-            }
-            else{
-            echo "<center>No items have been purchased yet</center>";
-            }
-            
-            
         }
+        $conn->close();
     }
-    mysqli_close($conn);
+    else{
+        header('Location: login.php');
+    }
     ?>
+<script>
+function menu(){
+if(document.getElementById('menuu').style.opacity==0)
+{
+document.getElementById('menuu').style.opacity=1;
+document.getElementById('menuu').style.width='15%';
+}
+else{
+document.getElementById('menuu').style.opacity=0;
+document.getElementById('menuu').style.width=0;
+}
+}
+function add_item(){
+window.open("add_item.php","_self");
+}
+function add_funds(){
+window.open("charge.php","_self");
+}
+function logout(){
+window.open("logout.php","_self");
+}
+function main(){
+window.open("main.php","_self");
+}
+function markt(){
+window.open("markt.php","_self");
+}
+function usrinfo(){
+window.open("account.php","_self");
+}
+</script>
+
+<div id="menuu">
+    <div class="menuu" onclick="markt()">Markt</div>
+    <div class="menuu" onclick="add_item()">Add Item</div>
+    <div class="menuu" onclick="add_funds()">Add Funds</div>
+    <div class="menuu" onclick="main()">Main Site</div>
+    <div class="menuu" onclick="usrinfo()">User Info</div>
+    <div class="menuu" onclick="logout()">Logout</div>
+    <div class="menuu" onclick="menu()">X</div>
+</div>
+    <footer>
+        <a href="https://github.com/zdinozi" target="_blank"><img src="github-ww.png" style="width: 50px; height: 50px;"></a>&nbsp;&nbsp<a href="https://www.linkedin.com/in/wiktor-banasiak-672425222/" target="_blank"><img src="linkedin.png" style="width: 50px; height: 50px;"></a>
+    </footer>
 </body>
 </html>

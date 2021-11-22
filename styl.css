@@ -1,9 +1,23 @@
-*{
-    margin: 0;
-    font-family: 'Arial unicode ms';
+html{
+    height: 100%;
 }
-#powitanie{
-    font-size: 200%;
+body{
+    min-height: 100%;
+    margin: 0;
+    font-family: 'Arial';
+    display: flex;
+    flex-direction: column;
+}
+#tabela-text{
+    flex-direction: row-reverse;
+}
+#main-hello{
+    width: 100%;
+    color: white;
+    background-color: #2A3A3B;
+    font-size: 350%;
+    padding-top: 20px;
+    padding-bottom: 20px;
     text-align: center;
 }
 #animation{
@@ -87,17 +101,39 @@
 }
 #markt-login
 {
-    font-size: 25px;
+    width: 100%;
+    background-color: #2A3A3B;
+    color: white;
+    font-size: 35px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+#markt-login-login{
+    text-align: center;
+    width: 90%;
+    float: left;
+}
+#markt-menu{
+    width: 10%;
+    text-align: right;
+    float:left;
+    color:white
 }
 #markt-avilible{
-    font-size:20px;
+    font-size:30px;
+    color:#981816;
+    text-align: center;
+    font-weight: bold;
 }
 #markt-table{
+    width: 100%;
     margin-top: 15px;
 }
 #markt-table table{
     border: 1px solid black;
     border-collapse: collapse;
+    margin-right: auto;
+    margin-left: auto;
 }
 #markt-table td{
     border: 1px solid black;
@@ -126,15 +162,23 @@
     text-align: center;
     margin-bottom: 30px;
     width: 100%;
+    background-color: #2A3A3B;
+    color:white;
 }
 #login-data{
     width: 100%;
+}
+#login-data table{
+    margin-left: auto;
+    margin-right: auto;
+}
+.aclass{
+    color:cornflowerblue;
     text-align: center;
 }
-#login-data a{
-    text-decoration: none;
-    color: black;
-    
+.aclass:hover{
+    color:midnightblue;
+    transition: 1s;
 }
 .sbm{
     background-color : white;
@@ -148,17 +192,9 @@
     cursor: pointer;
     border: 2px solid black;
 }
-#account-info{
-    margin-bottom: 20px;
-    text-align: center;
-}
-#account-table{
-    margin-bottom: 20px;
-}
-#account-item-text{
-    text-align: center;
-    margin-top: 30px;
-    margin-bottom: 15px;
+#register-register{
+    margin-left: auto;
+    margin-right: auto;
 }
 #register-register h1{
     text-align: center;
@@ -169,17 +205,152 @@
     text-decoration: none;
     color:black;
 }
-#add-main{
-    text-align: center;
-}
-#add-main h3{
-    margin-bottom: 20px;
+#add-table{
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
 }
 #charge-main{
     text-align: center;
     width: 100%;
 }
 #charge-main h3{
-margin-top: 30px;
-margin-bottom: 20px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.fontt{
+    font-weight: bold;
+}
+#account-ttable{
+    margin-right: auto;
+    margin-left: auto;
+}
+#account-ttable table{
+    border-collapse: collapse;
+}
+#account-ttable th{
+    border: 1px solid #2A3A3B;
+}
+.account-t{
+    border:1px solid black;
+}
+#account-info-info{
+     /*margin-bottom: 20px;*/
+     /*text-align: center;*/
+     /*width: 100%;*/
+     /*float:left;*/
+     /*background-color: #2A3A3B;*/
+     /*font-size: 35px;*/
+    width: 100%;
+    background-color: #2A3A3B;
+    color: white;
+    font-size: 35px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+ }
+#account-info{
+    /*text-align: center;*/
+    /*width: 90%;*/
+    /*color:white;*/
+    /*float:left;*/
+    /*padding-top:20px;*/
+    /*padding-bottom: 20px;*/
+    text-align: center;
+    width: 90%;
+    float: left;
+}
+#account-table{
+    width: 100%;
+}
+#account-table-table{
+    margin-left: auto;
+    margin-right: auto;
+}
+#account-item-text{
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    background-color: #2A3A3B;
+    color:white;
+}
+footer{
+    width: 100%;
+    margin-top: auto;
+    background-color: #24292f;
+    height: 200px;
+}
+#register-reg{
+    width: 100%;
+    text-align: center;
+    background-color: #2A3A3B;
+    color:white;
+    margin-bottom: 30px;
+}
+#menuu{
+    display: block;
+    position:fixed;
+    right: 0;
+    transition: 2s;
+    opacity: 0;
+    width:0;
+    height:100%;
+    background-color: #323F45;
+    color:white;
+    /*display: none;*/
+}
+.menuu{
+    display: block;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid white;
+    text-align: center;
+    cursor: pointer;
+}
+.menuu:hover{
+    background-color: burlywood;
+    transition: 1s;
+}
+.menuu:first-child{
+    border-top:1px solid white;
+}
+.menuu:last-child{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-bottom: 1px solid white;
+    border-top: 1px solid white;
+}
+.markt-th{
+    color:#981816;
+}
+.menu-block
+{
+    display: block;
+    position: absolute;
+    right: 3%;
+    top: 0;
+    color: white;
+    font-size: 40px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    background-color: #2A3A3B;
+    border: 1px solid #2A3A3B;
+    border-radius-bottomleft: 20%;
+    border-radius-topleft: 20%;
+    cursor: pointer;
+}
+.title-main{
+    font-size: 50px;
+    width: 100%;
+    color: white;
+    background-color: #2A3A3B;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+#charge-table{
+    margin-top: 10px;
+    margin-right: auto;
+    margin-left: auto;
 }
